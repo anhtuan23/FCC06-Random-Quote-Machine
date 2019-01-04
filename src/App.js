@@ -1,13 +1,48 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+const quoteArray = [
+  {
+    quote: 'Remember that not getting what you want is sometimes a wonderful stroke of luck.',
+    author: 'Dalai Lama'
+  },
+  {
+    quote: 'If you can dream it, you can achieve it.',
+    author: 'Zig Ziglar'
+  },
+  {
+    quote: 'It does not matter how slowly you go as long as you do not stop.',
+    author: 'Confucius'
+  },
+  {
+    quote: 'Everything you’ve ever wanted is on the other side of fear.',
+    author: 'George Addair'
+  },
+  {
+    quote: 'Either you run the day, or the day runs you.',
+    author: 'Jim Rohn'
+  }
+];
+
+const colorArray = ['282c34', '364666', '4d3b5c', '662c4f', '31662c'];
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      quotes: quoteArray,
+      colors: colorArray
+    }
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <QuoteBox />
+          <QuoteBox
+            quote={this.state.quotes[0].quote}
+            author={this.state.quotes[0].author}
+          />
           <Credit />
         </header>
       </div>
@@ -22,13 +57,13 @@ class QuoteBox extends Component {
     return (
       <div id="quote-box">
         <blockquote id="text">
-        Whatever you can do, or dream you can, begin it. Boldness has genius, power and magic in it.
-          <cite id="author">Johann Wolfgang von Goethe</cite>
+          {this.props.quote}
+          <cite id="author">{this.props.author}</cite>
         </blockquote>
         <div id="button-container">
           <div id="social-media-btn-container">
-            <button className="btn btn-success" id="tweet-quote"><i className="fab fa-twitter"/></button>
-            <button className="btn btn-success"><i className="fab fa-tumblr"/></button>
+            <button className="btn btn-success" id="tweet-quote"><i className="fab fa-twitter" /></button>
+            <button className="btn btn-success"><i className="fab fa-tumblr" /></button>
           </div>
           <div id="new-quote-btn-container">
             <button className="btn btn-success" id="new-quote">New Quote</button>
@@ -40,8 +75,8 @@ class QuoteBox extends Component {
 }
 
 class Credit extends Component {
-  render(){
-    return(
+  render() {
+    return (
       <div id="credit">
         by Do Tuan Anh
       </div>
