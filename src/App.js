@@ -30,9 +30,25 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      quotes: quoteArray,
-      colors: colorArray
+      quoteIndex: 0,
+      colorIndex: 0
     }
+    this.newQuote = this.newQuote.bind(this);
+  }
+
+  newQuote(){
+    this.setState({
+      quoteIndex: App.getNewRandom(quoteArray.length, this.state.quoteIndex),
+      colorIndex: App.getNewRandom(colorArray.length, this.state.colorIndex)
+    })
+  }
+
+  static getNewRandom(max, excludedNumber){
+    let num = 0;
+    do {
+      num = Math.floor(Math.random() * max)
+    } while (num === excludedNumber);
+    return num;
   }
 
   render() {
@@ -40,8 +56,9 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <QuoteBox
-            quote={this.state.quotes[0].quote}
-            author={this.state.quotes[0].author}
+            quote={quoteArray[this.state.quoteIndex].quote}
+            author={quoteArray[this.state.quoteIndex].author}
+            newQuote={this.newQuote}
           />
           <Credit />
         </header>
@@ -66,7 +83,7 @@ class QuoteBox extends Component {
             <button className="btn btn-success"><i className="fab fa-tumblr" /></button>
           </div>
           <div id="new-quote-btn-container">
-            <button className="btn btn-success" id="new-quote">New Quote</button>
+            <button onClick={this.props.newQuote} className="btn btn-success" id="new-quote">New Quote</button>
           </div>
         </div>
       </div>
