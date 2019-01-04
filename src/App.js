@@ -21,10 +21,30 @@ const quoteArray = [
   {
     quote: 'Either you run the day, or the day runs you.',
     author: 'Jim Rohn'
-  }
+  },
+  {
+    quote: 'Challenges are what make life interesting and overcoming them is what makes life meaningful.',
+    author: 'Joshua J. Marine'
+  },
+  {
+    quote: 'Too many of us are not living our dreams because we are living our fears.',
+    author: 'Les Brown'
+  },
+  {
+    quote: 'I didn’t fail the test. I just found 100 ways to do it wrong.',
+    author: 'Benjamin Franklin'
+  },
+  {
+    quote: 'Your time is limited, so don’t waste it living someone else’s life.',
+    author: 'Steve Jobs'
+  },
+  {
+    quote: 'You miss 100% of the shots you don’t take.',
+    author: 'Wayne Gretzky'
+  },
 ];
 
-const colorArray = ['#282c34', '#364666', '#4d3b5c', '#662c4f', '#31662c'];
+const colorArray = ['#282c34', '#364666', '#4d3b5c', '#662c4f', '#31662c', '#b71c1c', '#880e4f', '#4a148c', '#311b92', '#1a237e', '#004d40', '#33691e', '#f57f17', '#e65100', '#bf360c', '#6d4c41', '#616161', '#455a64'];
 
 class App extends Component {
   constructor(props) {
