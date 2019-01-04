@@ -7,18 +7,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <QuoteBox />
+          <Credit />
         </header>
       </div>
     );
@@ -26,3 +16,35 @@ class App extends Component {
 }
 
 export default App;
+
+class QuoteBox extends Component {
+  render() {
+    return (
+      <div id="quote-box">
+        <blockquote id="text">
+        Whatever you can do, or dream you can, begin it. Boldness has genius, power and magic in it.
+          <cite id="author">Johann Wolfgang von Goethe</cite>
+        </blockquote>
+        <div id="button-container">
+          <div id="social-media-btn-container">
+            <button className="btn btn-success" id="tweet-quote"><i className="fab fa-twitter"/></button>
+            <button className="btn btn-success"><i className="fab fa-tumblr"/></button>
+          </div>
+          <div id="new-quote-btn-container">
+            <button className="btn btn-success" id="new-quote">New Quote</button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+class Credit extends Component {
+  render(){
+    return(
+      <div id="credit">
+        by Do Tuan Anh
+      </div>
+    );
+  }
+}
