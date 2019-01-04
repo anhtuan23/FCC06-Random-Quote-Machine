@@ -24,7 +24,7 @@ const quoteArray = [
   }
 ];
 
-const colorArray = ['282c34', '364666', '4d3b5c', '662c4f', '31662c'];
+const colorArray = ['#282c34', '#364666', '#4d3b5c', '#662c4f', '#31662c'];
 
 class App extends Component {
   constructor(props) {
@@ -47,14 +47,18 @@ class App extends Component {
     let num = 0;
     do {
       num = Math.floor(Math.random() * max)
-    } while (num === excludedNumber);
+    } while (num === excludedNumber);;
     return num;
   }
 
   render() {
+    const headerStyle = {
+      backgroundColor: colorArray[this.state.colorIndex],
+      color: colorArray[this.state.colorIndex]
+    }
     return (
       <div className="App">
-        <header className="App-header">
+        <header className="App-header" style={ headerStyle }>
           <QuoteBox
             quote={quoteArray[this.state.quoteIndex].quote}
             author={quoteArray[this.state.quoteIndex].author}
