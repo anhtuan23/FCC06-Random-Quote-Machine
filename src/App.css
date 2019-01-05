@@ -10,7 +10,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-  transition:0.5s;
+  transition: 0.5s;
 }
 
 #quote-box {
@@ -51,22 +51,26 @@ blockquote cite:before {
   content: "\2014 \2009";
 }
 
-#button-container{
+#button-container {
   display: flex;
   margin: 25px;
 }
 
-#social-media-btn-container{
+#social-media-btn-container {
   flex: auto;
   display: flex;
 }
 
-button{
+button, a {
   margin: 5px;
   min-width: 42px;
 }
 
-#credit{
+.icon {
+  color: white;
+}
+
+#credit {
   font-size: 12px;
   margin: 10px;
   color: white;

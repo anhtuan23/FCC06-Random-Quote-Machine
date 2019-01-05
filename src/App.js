@@ -83,6 +83,7 @@ class App extends Component {
             quote={quoteArray[this.state.quoteIndex].quote}
             author={quoteArray[this.state.quoteIndex].author}
             newQuote={this.newQuote}
+            color={colorArray[this.state.colorIndex]}
           />
           <Credit />
         </header>
@@ -96,14 +97,6 @@ export default App;
 class QuoteBox extends Component {
   constructor(props){
     super(props);
-    this.twitterShareUrl = this.shareToTwitter.bind(this);
-    this.shareToTumblr = this.shareToTumblr.bind(this);
-  }
-  shareToTwitter() {
-    window.open(`https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=${this.props.quote} ${this.props.author}`, "_blank");
-  }
-  shareToTumblr() {
-    window.open(`https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=${this.props.author}&content=${this.props.quote}%20%20Boldness%20has%20genius%2C%20power%20and%20magic%20in%20it.&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button`, "_blank");
   }
 
   render() {
@@ -115,11 +108,11 @@ class QuoteBox extends Component {
         </blockquote>
         <div id="button-container">
           <div id="social-media-btn-container">
-            <SocialMediaButton id={'tweet-quote'} icon={'fa-twitter'} url={twitterShareUrl(this.props.quote, this.props.author)} onClick={this.shareToTwitter}/>
-            <SocialMediaButton icon={'fa-tumblr'} onClick={this.shareToTumblr}/>
+            <SocialMediaButton id={'tweet-quote'} icon={'fa-twitter'} url={getTwitterShareUrl(this.props.quote, this.props.author)}/>
+            <SocialMediaButton icon={'fa-tumblr'} onClick={this.shareToTumblr} url={getTumblrShareUrl(this.props.quote, this.props.author)}/>
           </div>
           <div id="new-quote-btn-container">
-            <button onClick={this.props.newQuote} className="btn btn-success" id="new-quote">New Quote</button>
+            <button onClick={this.props.newQuote} className="btn btn-primary" id="new-quote">New Quote</button>
           </div>
         </div>
       </div>
@@ -127,12 +120,16 @@ class QuoteBox extends Component {
   }
 }
 
-const twitterShareUrl = (quote, author) =>{
-  return `https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=${quote} ${author}`
+const getTwitterShareUrl = (quote, author) =>{
+  return `https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=${quote} ${author}`;
+}
+
+const getTumblrShareUrl = (quote, author) =>{
+  return `https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=${author}&content=${quote}%20%20Boldness%20has%20genius%2C%20power%20and%20magic%20in%20it.&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button`;
 }
 
 function SocialMediaButton(props){
-  return <button onClick={props.onClick} className="btn btn-success" id={props.id}><i className={`fab ${props.icon}`} /></button>
+  return <a href={props.url} target="_blank" className="btn btn-primary" id={props.id}><i className={`icon fab ${props.icon}`} /></a>
 }
 
 class Credit extends Component {
