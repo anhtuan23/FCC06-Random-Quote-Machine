@@ -66,6 +66,11 @@ button, a {
   min-width: 42px;
 }
 
+.btn:focus, .btn:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 .icon {
   color: white;
 }
