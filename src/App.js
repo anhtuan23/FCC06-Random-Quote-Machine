@@ -95,10 +95,6 @@ class App extends Component {
 export default App;
 
 class QuoteBox extends Component {
-  constructor(props){
-    super(props);
-  }
-
   render() {
     return (
       <div id="quote-box">
