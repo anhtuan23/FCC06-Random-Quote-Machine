@@ -94,6 +94,18 @@ class App extends Component {
 export default App;
 
 class QuoteBox extends Component {
+  constructor(props){
+    super(props);
+    this.twitterShareUrl = this.shareToTwitter.bind(this);
+    this.shareToTumblr = this.shareToTumblr.bind(this);
+  }
+  shareToTwitter() {
+    window.open(`https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=${this.props.quote} ${this.props.author}`, "_blank");
+  }
+  shareToTumblr() {
+    window.open(`https://www.tumblr.com/widgets/share/tool?posttype=quote&tags=quotes,freecodecamp&caption=${this.props.author}&content=${this.props.quote}%20%20Boldness%20has%20genius%2C%20power%20and%20magic%20in%20it.&canonicalUrl=https%3A%2F%2Fwww.tumblr.com%2Fbuttons&shareSource=tumblr_share_button`, "_blank");
+  }
+
   render() {
     return (
       <div id="quote-box">
@@ -103,8 +115,8 @@ class QuoteBox extends Component {
         </blockquote>
         <div id="button-container">
           <div id="social-media-btn-container">
-            <button className="btn btn-success" id="tweet-quote"><i className="fab fa-twitter" /></button>
-            <button className="btn btn-success"><i className="fab fa-tumblr" /></button>
+            <SocialMediaButton id={'tweet-quote'} icon={'fa-twitter'} url={twitterShareUrl(this.props.quote, this.props.author)} onClick={this.shareToTwitter}/>
+            <SocialMediaButton icon={'fa-tumblr'} onClick={this.shareToTumblr}/>
           </div>
           <div id="new-quote-btn-container">
             <button onClick={this.props.newQuote} className="btn btn-success" id="new-quote">New Quote</button>
@@ -113,6 +125,14 @@ class QuoteBox extends Component {
       </div>
     );
   }
+}
+
+const twitterShareUrl = (quote, author) =>{
+  return `https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=${quote} ${author}`
+}
+
+function SocialMediaButton(props){
+  return <button onClick={props.onClick} className="btn btn-success" id={props.id}><i className={`fab ${props.icon}`} /></button>
 }
 
 class Credit extends Component {
